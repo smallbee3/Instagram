@@ -47,3 +47,13 @@ nav.top-nav #top-nav:not(.in):not(.collapsing) .search-hashtag-form .search-hash
     font-weight: bold;
     margin-right: 3px;
 }
+
+
+/********************************************/
+/* Custom CSS */
+
+
+.input-style {
+    border: 0;
+    width: 100%;
+}

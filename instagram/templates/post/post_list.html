@@ -19,22 +19,32 @@
 
     {% for post in posts %}
         <div class="panel panel-default post-item">
-            <img src="{{ post.photo.url }}" alt="" class="post-image">
-            <div class="panel-body">
-                <div class="inline">
-                    {% for comment in post.comment_set.all %}
-                        <p><b>{{ comment.author }}</b> {{ comment.content }}</p>
-                    {% endfor %}
-                </div>
-                <form action="{% url 'post:comment_create' post_pk=post.pk %}" method="post" class="comment-form">
+            <div class="">
 
-                    {#        NoReverseMatch 문제 발생해서 구석기 방법으로 먼저 시도 #}
-                    {#        <form action="/post/{{ post.pk }}/comment/create/" method="post" class="form-control">#}
-                    {% csrf_token %}
-{#                    <label for="comment">댓글</label>#}
-                    <input type="text" id="comment" name="content" class="input-style" placeholder="댓글 달기...">
-{#                    <button type="submit" class="btn btn-primary">submit</button>#}
-                </form>
+                <a href="{% url 'post:post_detail' post_pk=post.pk %}">
+                    <img src="{{ post.photo.url }}" alt="" class="post-image">
+                    <div class="post-content">
+                        {{ post.content }}
+                    </div>
+                </a>
+
+                <div class="panel-body">
+                    <div class="inline">
+                        {% for comment in post.comment_set.all %}
+                            <p><b>{{ comment.author }}</b> {{ comment.content }}</p>
+                        {% endfor %}
+                    </div>
+                    <form action="{% url 'post:comment_create' post_pk=post.pk %}" method="post" class="comment-form">
+
+                        {#        NoReverseMatch 문제 발생해서 구석기 방법으로 먼저 시도 #}
+                        {#        <form action="/post/{{ post.pk }}/comment/create/" method="post" class="form-control">#}
+                        {% csrf_token %}
+                        {#                    <label for="comment">댓글</label>#}
+                        <input type="text" id="comment" name="content" class="input-style" placeholder="댓글 달기...">
+                        {#                    <button type="submit" class="btn btn-primary">submit</button>#}
+                    </form>
+                </div>
+
             </div>
 
         </div>
